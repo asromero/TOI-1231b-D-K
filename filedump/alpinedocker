@@ -1,0 +1,38 @@
+# Use Alpine as the base image
+FROM alpine:latest
+
+# Install necessary packages (openssl and openssh-client)
+# Alpine uses apk packyage manager instead of apt
+RUN apk update 
+RUN apk add openssl openssh-client
+RUN apk add iproute2
+
+# Create the .ssh directory
+RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
+
+# Set the working directory
+WORKDIR /data
+
+# Copy the script and known_hosts file, and the private key
+COPY transfer_script.sh /data/
+COPY known_hosts /root/.ssh/known_hosts
+COPY id_rsa /root/.ssh/id_rsa
+
+# Set the correct permissions
+RUN chmod 600 /root/.ssh/id_rsa
+RUN chmod 644 /root/.ssh/known_hosts
+RUN chmod +x /data/transfer_script.sh
+
+ENV SOURCE_DIR /data/
+
+
+# Define the command to run when the container starts
+CMD ["sh", "/data/transfer_script.sh"]
+
+
+
+
+
+
+
+
