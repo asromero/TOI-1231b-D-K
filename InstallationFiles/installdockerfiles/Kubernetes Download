@@ -1,3 +1,10 @@
 https://1drv.ms/u/s!AjEhKJYUm1c8gUjTbpcfighMOfx7?e=JMTg7X
 Download the binary files and scp them to the  /usr/local/bin on the pi of your choice
 Kubernetes Installer Cause I Can't upload it to github
+
+SUPER IMPORTANT: if on first init of the k3s node it gives u an error about cgroups
+
+go to /boot/firmware/cmdline.txt
+
+add this to the end of it 
+cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory
