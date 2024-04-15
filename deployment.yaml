@@ -1,0 +1,51 @@
+# values-large.yaml
+replicaCount: 1
+
+image:
+  repository: isaacblekhman14/alpinerepo
+  tag: v18
+  pullPolicy: IfNotPresent
+
+env:
+  ENCRYPTION_PASSWORD: "toilarge1231bPass..?"
+  TARGET_DIR: "/home/toi1231brouter/FileDumpster"
+  TARGET_IP: "192.168.118.55"
+  TARGET_ETHERNET: "fe80::a63:99f8:596e:3279"
+  TARGET_USERNAME: "toi1231brouter"
+  SOURCE_DIR: "/home"
+  CAMERA_BYPASS: 'false'
+
+hostNetwork: true
+nodeSelector:
+  kubernetes.io/hostname: pi-large-drone
+
+volumes:
+  data-volume:
+    hostPath:
+      path: "/home/toi1231blarge/filedump/files"
+
+# values-small.yaml
+replicaCount: 1
+
+image:
+  repository: isaacblekhman14/alpinerepo
+  tag: v18
+  pullPolicy: IfNotPresent
+
+env:
+  ENCRYPTION_PASSWORD: "toismall1231bPass..?"
+  TARGET_DIR: "/home/toi1231brouter/FileDumpster"
+  TARGET_IP: "192.168.118.54"
+  TARGET_ETHERNET: "fe80::a63:99f8:596e:3279"
+  TARGET_USERNAME: "toi1231brouter"
+  SOURCE_DIR: "/home"
+  CAMERA_BYPASS: 'false'
+
+hostNetwork: true
+nodeSelector:
+  kubernetes.io/hostname: pi-small-drone
+
+volumes:
+  data-volume:
+    hostPath:
+      path: "/home/toi1231bsmall/filedump/files"
